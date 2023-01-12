@@ -32,9 +32,9 @@ startServer();
      if (!cluster.workers || Object.keys(cluster.workers).length === 0) {
        // There are no workers, fork a new worker
       cluster.fork();
-     }//
-//   });
-// } else if (cluster.isWorker) {
-//   // This is a worker process, start the server
-//   startServer();
-// }
+     }
+   });
+ } else if (cluster.isWorker) {
+   // This is a worker process, start the server
+   startServer();
+ }
