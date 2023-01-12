@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config({ path: ".env" });
 import { connection, connect, set, ConnectOptions } from "mongoose";
 
 set("strictQuery", true);
@@ -5,15 +7,20 @@ set("strictQuery", true);
 const Connect__Database = async (port: number) => {
   try {
     const connectionOptions = {
-      dbName: "Authentication__API",
+      dbName: "Authentication--API--Database",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as ConnectOptions;
 
-    connect("mongodb://localhost:27017", connectionOptions);
+    connect(
+      `mongodb+srv://authenticate:${process.env.MONGO_PASSWORD}@cluster0.6wj6ch7.mongodb.net/?retryWrites=true&w=majority`,
+      connectionOptions
+    );
 
     connection.on("connected", () => {
-      console.log(`Server is running on PORT ${port} and connected to database`);
+      console.log(
+        `Server is running on PORT ${port} and connected to database`
+      );
     });
     connection.on("error", (error) => {
       throw error;
@@ -30,4 +37,4 @@ const Connect__Database = async (port: number) => {
   }
 };
 
-export default Connect__Database
+export default Connect__Database;
