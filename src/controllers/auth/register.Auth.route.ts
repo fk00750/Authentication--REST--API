@@ -63,9 +63,9 @@ const registerUser: RouteParamsHandler = async (req, res, next) => {
       );
 
       const verificationUrl = `http://localhost:3000/verify-email/${userId}/${verificationToken}`;
-      console.log(verificationUrl);
+      // console.log(verificationUrl);
 
-      // await sendVerificationMail(email, verificationUrl);
+      await sendVerificationMail(email, verificationUrl);
     } catch (error) {
       if (error instanceof Error) {
         res.status(500).json({ message: error.message });
